@@ -1,0 +1,14 @@
+---
+- name: Add docker repository
+  yum_repository:
+    name: docker-ce
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
+    gpgcheck: 1
+    enabled: 1
+    gpgkey: https://download.docker.com/linux/fedora/gpg
+
+- name: Install docker package
+  dnf: name={{ item }} state=present
+  with_items:
+   - docker-ce
