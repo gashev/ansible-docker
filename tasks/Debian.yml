@@ -1,0 +1,22 @@
+---
+- name: Add Docker’s official GPG key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: Install ca-certificates package
+  apt: name={{ item }} state=present
+  with_items:
+   - apt-transport-https
+   - ca-certificates
+
+- name: Add docker repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ansible_distribution_release}} stable"
+    state: present
+    update_cache: yes
+
+- name: Install docker package
+  apt: name={{ item }} state=present
+  with_items:
+   - docker-ce
