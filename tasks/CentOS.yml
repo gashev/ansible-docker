@@ -7,8 +7,3 @@
     gpgcheck: 1
     enabled: 1
     gpgkey: https://download.docker.com/linux/centos/gpg
-
-- name: Install docker package
-  yum: name={{ item }} state=present
-  with_items:
-   - docker-ce

@@ -1,4 +1,10 @@
+---
 - include_tasks: "{{ ansible_distribution }}.yml"
+
+- name: Install docker package
+  package: name={{ item }} state=present
+  with_items:
+   - docker-ce
 
 - name: Start Docker Service
   service: name=docker state=started enabled=yes
