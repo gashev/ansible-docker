@@ -1,14 +1,14 @@
 ---
-- name: Add Docker’s official GPG key
-  apt_key:
-    url: https://download.docker.com/linux/debian/gpg
-    state: present
-
 - name: Install ca-certificates package
   apt: name={{ item }} state=present
   with_items:
    - apt-transport-https
    - ca-certificates
+
+- name: Add Docker’s official GPG key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
 
 - name: Add docker repository
   apt_repository:
